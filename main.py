@@ -3,7 +3,7 @@ Subject:    Introducción a la física computacional en python
 Nombre:     Ejercicios 2.4, 2.5, 2.6
 Autores:    Adrián Felipe Hernández Borda
             Eider David Torres Mesa cod 201811831
-
+            Daniel Felipe Angarita Abril
 """
 
 """
