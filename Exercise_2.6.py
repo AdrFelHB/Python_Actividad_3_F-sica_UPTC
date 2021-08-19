@@ -62,6 +62,6 @@ a=0.5*(Lp+La)
 b=np.sqrt(Lp*La)
 T=(2*np.pi*a*b)/(Lp*Vp)
 e=(La-Lp)/(La+Lp)
-#
+#Finally, it remains for us to print the orbital period and the ecentricity of the orbits.
 print(f'Orbital period {T*3.171e-8} years')
 print(f'Eccentricity {e}')
