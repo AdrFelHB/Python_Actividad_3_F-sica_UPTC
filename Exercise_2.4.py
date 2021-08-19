@@ -36,7 +36,7 @@ def several_speed_values(x,single_v,single_t):
     ax.set_xlim(0, 1)
     ax.grid(True)
     ax.plot(v, t,'k-')
-    ax.plot([single_v],[single_t],'or',label=r'$\Delta t = $' + str(round(single_t,2)) + r' for $v = $' + str(round(single_v,2)) + 'c')
+    ax.plot([single_v],[single_t],'or',label=r'$\Delta t = $' + str(round(single_t,2)) + r'y for $v = $' + str(round(single_v,2)) + 'c')
     plt.legend()
     plt.show()
 
