@@ -12,9 +12,16 @@ from math import * #import all functions and variables from the package math
 m=float(input("Enter the mass of the particle in MeV/c^2: "))
 E=float(input("Enter the initial kinetic energy E of the particle in eV: "))
 V=float(input("Enter the potential energy V of the particle in eV: "))
+
+while E <= V:
+ Print("The potential V is greater than the initial energy E and, therefore, the particle never will pass the step\n")
+ E=float(input("Enter the initial kinetic energy E of the particle in eV: "))
+ V=float(input("Enter the potential energy V of the particle in eV: "))
+"""
 if E<V:
- Print("The potential V is greater than the initial energy E and, therefore, the particle never will pass the step")
+ 
 else:
+"""
 h=6.582119569*(10**-16)
 k1=(sqrt(2*m*E))/h
 k2=(sqrt(2*m*(E-V)))/h
