@@ -26,45 +26,97 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def several_speed_values(x,single_v,single_t):
-    v = np.linspace(0.00,0.999,200)
-    t = np.abs(x / v) / np.sqrt(1 - (v**2))
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    ax.set_title(f'Time for traveling to {x:1.2f} light years away planet\nmeasured from spaceship.')
-    ax.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$ of spaceship   [years]')
-    ax.set_xlim(0, 1)
-    ax.grid(True)
-    ax.plot(v, t,'k-')
-    ax.plot([single_v],[single_t],'or',label=r'$\Delta t = $' + str(round(single_t,2)) + r'y for $v = $' + str(round(single_v,2)) + 'c')
-    plt.legend()
-    plt.show()
 
-def single_speed_value():
+#   define function to find time in earth or spacecraft frame for any especific value of v in 
 
-    # enter x and v as floating point variables
-    x = float(input("Enter the distance 'x' in light year \nx = "))
-    v = float(input("Enter the fraction of speed of light 'v', between (0,1)\nv = "))
-    while np.abs(v) >= 1:
-        v = float(input("Enter the fraction of speed of light 'v', between (0,1)\nv = "))
-
+def compute_time(x,v):
+    
+    global t_spaceship, t_earth
+    
     # ask user to chose between earth and spaceship reference frame
-    option = True
-    while option:
-        print("Select the reference frame\n (1) Earth\n (2) Spaceship")
+    
+    frame_menu = True
+    
+    while frame_menu:
+        print("Select the reference frame\n (1) Earth\n (2) Spaceship\n (3) exit")
         selection = int(input())
+
+        #   compute time for both of reference frames
+        
+        t_earth = np.abs(x/v)
+        t_spaceship = np.abs(x / v) / np.sqrt(1 - (v**2))
+        
         if selection == 1:
-            option = False
-            t = np.abs(x/v)
+            t = t_earth
+            frame_menu = False
         elif selection == 2:
-            option = False
-            t = np.abs(x / v) / np.sqrt(1 - (v**2))
+            t = t_spaceship
+            frame_menu = False
         else:
             pass
-    print(f'the time measured in chosen reference frame is:\nt = {t:1.3f} years')
-    several_speed_values(x,v,t)
+        
+    #   print out the time in the selected frame
+    
+    print(f'the time measured in chosen reference frame is:\nt = {t:1.2f} years')
 
+# define function to plot t in spaceship reference frame
 
+def plot_time(x,v_s,t_rest,t_moving):
+    
+    #   using numpy define de domain set for velocities
+    #   linspace function returns a vector with equally spaced numbers between an interval
+    
+    v = np.linspace(0.001,0.999,200)
+    
+    #   create a range set using time equations
+    
+    t_s = np.abs(x / v) / np.sqrt(1 - (v**2))
+    t_e = np.abs(x/v)
+    
+    #   Create a pyplot figure for plotting
+    
+    fig = plt.figure()
+    
+    #   create a subplot in fig for plotting time interval in spacecraft depending on its velocity
+    
+    ax1 = fig.add_subplot(1,2,1)    #
+    ax1.set_title(f'Time for traveling to {x:1.2f} light years away planet\nmeasured in spaceship.')
+    ax1.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$ in spaceship   [years]')
+    ax1.set_xlim(0, 1)
+    ax1.grid(True)
+    ax1.plot(v, t_s,'k-')
+    ax1.plot([v_s],[t_moving],'or',label=r'$\Delta t_{s} = $' + str(round(t_moving,2)) + r'y for $v = $' + str(round(v_s,2)) + 'c')
+    
+    #   create a subplot in fig for plotting time interval in earth depending on ship velocity
+    
+    ax2 = fig.add_subplot(1,2,2)
+    ax2.set_title(f'Time for traveling to {x:1.2f} light years away planet\nmeasured on earth.')
+    ax2.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$ in earth   [years]')
+    ax2.set_xlim(0, 1)
+    ax2.grid(True)
+    ax2.plot(v,t_e,'k-')
+    ax2.plot([v_s],[t_rest],'ob',label=r'$\Delta t_{e} = $' + str(round(t_rest)) + r'y for $v = $' + str(round(v_s,2)) + 'c')
+    
+    plt.legend()
+    plt.show()    
+
+#   main program
+
+#   shortexlpanation about what this program does
 
 print("This program allows you to find the time dilatation for a spaceship that travels with speed 'v' a fraction of speed of light")
-single_speed_value()
+
+#   enter x and v as floating point variables
+
+x = float(input("Enter the distance 'x' in light year \nx = "))
+v = float(input("Enter the fraction of speed of light 'v', between (0,1)\nv = "))
+
+#   next line guarantees that user has to enter a number between (0,1) for speed v
+
+while np.abs(v) >= 1:
+    v = float(input("Enter the fraction of speed of light 'v', between (0,1)\nv = "))
+
+#   call functions to main program
+
+compute_time(x,v)
+plot_time(x,v,t_earth,t_spaceship)
