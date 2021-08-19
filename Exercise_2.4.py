@@ -44,7 +44,7 @@ def compute_time(x,v):
         #   compute time for both of reference frames
         
         t_earth = np.abs(x/v)
-        t_spaceship = np.abs(x / v) / np.sqrt(1 - (v**2))
+        t_spaceship = np.abs(x / v) * np.sqrt(1 - (v**2))
         
         if selection == 1:
             t = t_earth
@@ -70,7 +70,7 @@ def plot_time(x,v_s,t_rest,t_moving):
     
     #   create a range set using time equations
     
-    t_s = np.abs(x / v) / np.sqrt(1 - (v**2))
+    t_s = np.abs(x / v) * np.sqrt(1 - (v**2))
     t_e = np.abs(x/v)
     
     #   Create a pyplot figure for plotting
