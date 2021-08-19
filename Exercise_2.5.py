@@ -16,8 +16,8 @@ if E<V:
  print("The potential V is greater than the initial energy E and, therefore, the particle never will pass the step")
 elif E>V:
  h=6.582119569*(10**-16)
- k1=(sqrt(2*m*E))/h
- k2=(sqrt(2*m*(E-V)))/h
+ k1=(sqrt(2*m*(10**-6)*E))/h
+ k2=(sqrt(2*m*(10**-6)*(E-V)))/h
  T=(4*k1*k2)/((k1+k2)**2)
  R=((k1-k2)/(k1+k2))**2
  print("The value of T is: ",T)
