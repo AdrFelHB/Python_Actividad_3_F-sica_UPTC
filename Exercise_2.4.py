@@ -26,11 +26,26 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-# enter x and v as floating point variables
+def several_speed_values(x,single_v,single_t):
+    v = np.linspace(0.00,0.999,200)
+    t = np.abs(x / v) / np.sqrt(1 - (v**2))
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.set_title(f'Time for traveling to {x:1.2f} light years away planet\nmeasured from spaceship.')
+    ax.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$ of spaceship   [years]')
+    ax.set_xlim(0, 1)
+    ax.grid(True)
+    ax.plot(v, t,'k-')
+    ax.plot([single_v],[single_t],'or',label=r'$\Delta t = $' + str(round(single_t,2)) + r' for $v = $' + str(round(single_v,2)) + 'c')
+    plt.legend()
+    plt.show()
+
 def single_speed_value():
+
+    # enter x and v as floating point variables
     x = float(input("Enter the distance 'x' in light year \nx = "))
     v = float(input("Enter the fraction of speed of light 'v', between (0,1)\nv = "))
-    while v >= 1:
+    while np.abs(v) >= 1:
         v = float(input("Enter the fraction of speed of light 'v', between (0,1)\nv = "))
 
     # ask user to chose between earth and spaceship reference frame
@@ -43,22 +58,13 @@ def single_speed_value():
             t = np.abs(x/v)
         elif selection == 2:
             option = False
-            t = np.abs(x / v) * np.sqrt(1 - (v**2))
+            t = np.abs(x / v) / np.sqrt(1 - (v**2))
         else:
             pass
     print(f'the time measured in chosen reference frame is:\nt = {t:1.3f} years')
-
-def several_speed_values():
-    v = np.linspace(0.001,0.999,100)
-    x = float(input('Enter the distance \'x\' in light year \nx = '))
-    t = np.abs(x / v) * np.sqrt(1 - (v**2))
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    ax.set_title(f'Time for traveling to {x:1.2f} light years away planet\nmeasured from spaceship.')
-    ax.set(xlabel='v/c',ylabel='Time [years]')
-    ax.set_xlim(0, 1)
-    ax.grid(True)
-    ax.plot(v, t)
-    plt.show()
+    several_speed_values(x,v,t)
 
 
+
+print("This program allows you to find the time dilatation for a spaceship that travels with speed 'v' a fraction of speed of light")
+single_speed_value()
