@@ -76,33 +76,48 @@ def plot_time(x,v_s,t_rest,t_moving):
     #   Create a pyplot figure for plotting
     
     fig = plt.figure()
+    #   two subfigures are shown in a two columns arrange
     
     #   create a subplot in fig for plotting time interval in spacecraft depending on its velocity
+    #   first subplot, right column
     
-    ax1 = fig.add_subplot(1,2,1)    #
+    ax1 = fig.add_subplot(1,2,1)
+    #   title
     ax1.set_title(f'Time for traveling to {x:1.2f} light years away planet\nmeasured in spaceship.')
+    #   x and y labels
     ax1.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$ in spaceship   [years]')
+    #   limits for x axis
     ax1.set_xlim(0, 1)
+    #   Show a grid 
     ax1.grid(True)
+    #   
     ax1.plot(v, t_s,'k-')
     ax1.plot([v_s],[t_moving],'or',label=r'$\Delta t_{s} = $' + str(round(t_moving,2)) + r'y for $v = $' + str(round(v_s,2)) + 'c')
     
     #   create a subplot in fig for plotting time interval in earth depending on ship velocity
+    #   second subplot, right column
     
     ax2 = fig.add_subplot(1,2,2)
+    #   title
     ax2.set_title(f'Time for traveling to {x:1.2f} light years away planet\nmeasured on earth.')
+    #   x and y labels
     ax2.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$ in earth   [years]')
+    #   limits for x axis
     ax2.set_xlim(0, 1)
+    #   Show a grid 
     ax2.grid(True)
+    
     ax2.plot(v,t_e,'k-')
     ax2.plot([v_s],[t_rest],'ob',label=r'$\Delta t_{e} = $' + str(round(t_rest)) + r'y for $v = $' + str(round(v_s,2)) + 'c')
+    
+    # show legends and plots
     
     plt.legend()
     plt.show()    
 
 #   main program
 
-#   shortexlpanation about what this program does
+#   short exlpanation about what this program does
 
 print("This program allows you to find the time dilatation for a spaceship that travels with speed 'v' a fraction of speed of light")
 
