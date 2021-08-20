@@ -69,3 +69,113 @@ e=(La-Lp)/(La+Lp)
 #Finally, it remains for us to print the orbital period and the ecentricity of the orbits.
 print(f'Orbital period {T*3.171e-8} years')
 print(f'Eccentricity {e}')
+
+
+#PARA EL PUNTO C PARA LA TIERRA
+
+# We name the constants with which we are going to work.
+# The constant of gravitation and the mass of the Sun.
+G=6.6738E-11#N*m^2/kg^2
+Ms=1.9891E30#kg
+'' 'For the planet or orbiting body' ''
+
+#we ask the user to enter the values of the distance and speed at perihelion
+# LP = perihelion distance
+# Vp = velocity at perihelion
+Lp:1.4710e11 #m
+Vp:3.0287e4 #m/s
+'''
+We look for the roots of our polynomial of degree two
+Va = velocity at aphelion
+Va**2-(2*G*Ms)/(Lp*Vp)Va-(Vp**2-2*G*(Ms/Lp)
+comparing with ax ** 2 + bx + c we have that
+'''
+a=1
+b=-(2*G*Ms)/(Lp*Vp)
+c= -(2*G*Ms)/(Lp*Vp)
+#then
+pol_Va=[a, b,c]
+#the function np.roots to find the reices of the polynomial
+raices=np.roots(pol_Va)
+
+'''
+Since the value taken is the root that is different from the value entered
+in velocity, since the aphelion velocity is different from that of perihelion 
+for keppler's 2nd law we create a for loop for the arrangement of roots obtained 
+and we condition to print the root that is different from the entered velocity 
+value (perihelion) then,
+'''
+
+for i in raices:
+  if (round(i,2)!=Vp ):
+    Va=i
+    print(f'v_2={Va*3.6} km/h')
+
+#finally with the value of Va we find the length of the aphelion
+La=(Vp*Lp)/Va
+print(f'l_2={La*1000} km')
+#PART B AND C
+# WE DECLARE THE OPERATIONS GIVEN FOR THE EXERCISE
+a=0.5*(Lp+La)
+b=np.sqrt(Lp*La)
+T=(2*np.pi*a*b)/(Lp*Vp)
+e=(La-Lp)/(La+Lp)
+#Finally, it remains for us to print the orbital period and the ecentricity of the orbits.
+print(f'Orbital period {T*3.171e-8} years')
+print(f'Eccentricity {e}')
+
+#PARA HALLEY
+
+# We name the constants with which we are going to work.
+# The constant of gravitation and the mass of the Sun.
+G=6.6738E-11#N*m^2/kg^2
+Ms=1.9891E30#kg
+'' 'For the planet or orbiting body' ''
+
+#we ask the user to enter the values of the distance and speed at perihelion
+# LP = perihelion distance
+# Vp = velocity at perihelion
+Lp:8.7830e10 #m
+Vp:5.45290287e4 #m/s
+'''
+We look for the roots of our polynomial of degree two
+Va = velocity at aphelion
+Va**2-(2*G*Ms)/(Lp*Vp)Va-(Vp**2-2*G*(Ms/Lp)
+comparing with ax ** 2 + bx + c we have that
+'''
+a=1
+b=-(2*G*Ms)/(Lp*Vp)
+c= -(2*G*Ms)/(Lp*Vp)
+#then
+pol_Va=[a, b,c]
+#the function np.roots to find the reices of the polynomial
+raices=np.roots(pol_Va)
+
+'''
+Since the value taken is the root that is different from the value entered
+in velocity, since the aphelion velocity is different from that of perihelion 
+for keppler's 2nd law we create a for loop for the arrangement of roots obtained 
+and we condition to print the root that is different from the entered velocity 
+value (perihelion) then,
+'''
+
+for i in raices:
+  if (round(i,2)!=Vp ):
+    Va=i
+    print(f'v_2={Va*3.6} km/h')
+
+#finally with the value of Va we find the length of the aphelion
+La=(Vp*Lp)/Va
+print(f'l_2={La*1000} km')
+#PART B AND C
+# WE DECLARE THE OPERATIONS GIVEN FOR THE EXERCISE
+a=0.5*(Lp+La)
+b=np.sqrt(Lp*La)
+T=(2*np.pi*a*b)/(Lp*Vp)
+e=(La-Lp)/(La+Lp)
+#Finally, it remains for us to print the orbital period and the ecentricity of the orbits.
+print(f'Orbital period {T*3.171e-8} years')
+print(f'Eccentricity {e}')
+
+
+
