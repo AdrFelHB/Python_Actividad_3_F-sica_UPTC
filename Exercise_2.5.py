@@ -23,4 +23,4 @@ else: #Execute the next codelines if the previous condition is false
  T=(4*k1*k2)/((k1+k2)**2) #Define an operation for calculating transmission probability using k1 and k2
  R=((k1-k2)/(k1+k2))**2 #Define an operation for calculating reflection probability using k1 and k2
  print("The probability that the particle will be transmitted is about: ",round((T*100),2),"%") #Print the percent probability that particle will be transmitted
- print("The probability that the particle is reflected is: ",round((R*100),2),"%") #Print the percent probability that particle will be reflected
+ print("The probability that the particle is reflected is about: ",round((R*100),2),"%") #Print the percent probability that particle will be reflected
