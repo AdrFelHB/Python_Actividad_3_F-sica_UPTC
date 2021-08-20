@@ -27,37 +27,20 @@ from matplotlib import pyplot as plt
 
 
 
-#   define function to find time in earth or spacecraft frame for any especific value of v in 
+#   define function to find time in earth or spacecraft frame for any especific value of v
 
 def compute_time(x,v):
     
     global t_spaceship, t_earth
-    
-    # ask user to chose between earth and spaceship reference frame
-    
-    frame_menu = True
-    
-    while frame_menu:
-        print("Select the reference frame\n (1) Earth\n (2) Spaceship\n (3) exit")
-        selection = int(input())
 
         #   compute time for both of reference frames
         
-        t_earth = np.abs(x/v)
-        t_spaceship = np.abs(x / v) * np.sqrt(1 - (v**2))
-        
-        if selection == 1:
-            t = t_earth
-            frame_menu = False
-        elif selection == 2:
-            t = t_spaceship
-            frame_menu = False
-        else:
-            pass
-        
+    t_earth = np.abs(x/v)
+    t_spaceship = np.abs(x / v) * np.sqrt(1 - (v**2))
     #   print out the time in the selected frame
     
-    print(f'the time measured in chosen reference frame is:\nt = {t:1.2f} years')
+    print(f'the time measured in earth reference frame is:\nt = {t_earth:1.2f} years')
+    print(f'the time measured in spaceship reference frame is:\nt = {t_spaceship:1.2f} years')
 
 # define function to plot t in spaceship reference frame
 
@@ -81,42 +64,25 @@ def plot_time(x,v_s,t_rest,t_moving):
     #   create a subplot in fig for plotting time interval in spacecraft depending on its velocity
     #   first subplot, right column
     
-    ax1 = fig.add_subplot(1,2,1)
+    ax = fig.add_subplot(111)
     #   title
-    ax1.set_title(f'Time for traveling to {x:1.2f} light\nyears away planet measured in spaceship.')
+    ax.set_title(f'Time for traveling to {x:1.2f} light\nyears away planet.')
     #   x and y labels
-    ax1.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$ in spaceship   [years]')
+    ax.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$  [years]')
     #   limits for x and y axis
-    ax1.set_xlim(0, 1)
-    ax1.set_ylim(0, t_moving*1e1)
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, t_moving*1e2)
     
-    #   Show a grid 
-    ax1.grid(True)
+#    ax1.set_aspect('equal')
+   #   Show a grid 
+    ax.grid(True)
     #   
-    ax1.plot(v, t_s,'k-')
-    ax1.plot([v_s],[t_moving],'or',label=r'$\Delta t_{s} = $' + str(round(t_moving,2)) + r'y for $v = $' + str(round(v_s,2)) + 'c')
+    ax.plot(v, t_s,'k-',label=r"$\Delta t' (v)$")
+    ax.plot([v_s],[t_moving],'+k',label=r"$\Delta t' = $" + str(round(t_moving,2)) + r'y for $v = $' + str(round(v_s,2)) + 'c')
+    ax.plot(v,t_e,'r-',label=r"$\Delta t (v)$")
+    ax.plot([v_s],[t_rest],'+r',label=r"$\Delta t = $" + str(round(t_rest,2)) + r'y for $v = $' + str(round(v_s,2)) + 'c')
+    plt.tight_layout()
     plt.legend()
-    
-    #   create a subplot in fig for plotting time interval in earth depending on ship velocity
-    #   second subplot, right column
-    
-    ax2 = fig.add_subplot(1,2,2)
-    #   title
-    ax2.set_title(f'Time for traveling to {x:1.2f} light\nyears away planet measured on earth.')
-    #   x and y labels
-    ax2.set(xlabel=r'$\beta=\frac{v}{c}$',ylabel=r'$\Delta t$ in earth   [years]')
-    #   limits for x and y axis
-    ax2.set_xlim(0, 1)
-    ax2.set_ylim(0, t_rest*1e1)
-    #   Show a grid 
-    ax2.grid(True)
-    
-    ax2.plot(v,t_e,'k-')
-    ax2.plot([v_s],[t_rest],'ob',label=r'$\Delta t_{e} = $' + str(round(t_rest,2)) + r'y for $v = $' + str(round(v_s,2)) + 'c')
-    plt.legend()
-    # show legends and plots
-    
-    
     plt.show()    
 
 #   main program
