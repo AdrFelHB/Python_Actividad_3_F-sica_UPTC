@@ -9,7 +9,12 @@ then any other property of the orbit can be calculated from these two as follows
    energy, kinetic plus gravitational, of a planet with velocity v and distance r from
    the Sun is given by...
    
-
+for Earth
+Lp:1.4710e11 #m
+Vp:3.0287e4 #m/s
+for halley
+Lp:8.7830e10 #m
+Vp:5.45290287e4 #m/s
 """
 # load numpy module
 import numpy as np
