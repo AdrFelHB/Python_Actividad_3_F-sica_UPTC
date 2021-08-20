@@ -6,6 +6,13 @@ Autores:    Adrián Felipe Hernández Borda
             Daniel Felipe Angarita Abril
 """
 
+# load numpy module and pyplot from matplotlib library
+import numpy as np
+from matplotlib import pyplot as plt
+
+#import all functions and variables from the package math
+from math import * 
+
 """
 Exercise:   2.4
 Purpose:    Compute the time interval respect to earth and respect to a spaceship
@@ -19,10 +26,6 @@ Statement
             and (b) as perceived by a passenger on board the ship. Use your program to calculate
             the answers for a planet 10 light years away with v 0.99c.
 """
-# load numpy module and pyplot from matplotlib library
-import numpy as np
-from matplotlib import pyplot as plt
-
 
 
 #   define function to find time in earth or spacecraft frame for any especific value of v in 
@@ -145,11 +148,7 @@ Exercise 2.5 Quantum potential step: Suppose we have a particle with mass equal 
 program to compute and print out the transmission and reflection probabilities using the formulas above.
 """
 
-#Load numpy module and pyplot from matplotlib library
-import numpy as np
-from matplotlib import pyplot as plt
-#import all functions and variables from the package math
-from math import * 
+
 #Defining variables
 m=float(input("Enter the mass of the particle in MeV/c^2: ")) #Asks the user for the value of the mass in MeV/c^2 units
 E=float(input("Enter the initial kinetic energy E of the particle in eV: ")) #Asks the user for the value of the initial kinetic energy in eV units
@@ -190,8 +189,6 @@ for halley
 Lp:8.7830e10 #m
 Vp:5.45290287e4 #m/s
 """
-# load numpy module
-import numpy as np
 
 # We name the constants with which we are going to work.
 # The constant of gravitation and the mass of the Sun.
